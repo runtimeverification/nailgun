@@ -25,6 +25,8 @@
 	#include <direct.h>
 	#include <winsock2.h>
         #include <io.h>
+        typedef int socklen_t;
+        #define ECONNRESET WSAECONNRESET
 #else
 	#include <arpa/inet.h>
 	#include <netdb.h>
@@ -61,7 +63,7 @@
 	typedef unsigned int SOCKET;
 #endif
 
-#ifdef __APPLE__
+#if defined(__APPLE__) || defined(WIN32)
   #define SEND_FLAGS 0
 #else
   #define SEND_FLAGS MSG_NOSIGNAL
