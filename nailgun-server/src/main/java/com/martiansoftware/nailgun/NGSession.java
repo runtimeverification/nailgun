@@ -324,7 +324,6 @@ public class NGSession extends Thread {
 
                         if (mainMethod != null) {
                             server.nailStarted(cmdclass);
-                            NGSecurityManager.setExit(exit);
 
                             try {
                                 if (isStaticNail){

@@ -112,7 +112,6 @@ public class NGServer implements Runnable {
     /**
      * Remember the security manager we start with so we can restore it later
      */
-    private SecurityManager originalSecurityManager = null;
     private int heartbeatTimeoutMillis = NGConstants.HEARTBEAT_TIMEOUT_MILLIS;
 
     /**
@@ -371,8 +370,6 @@ public class NGServer implements Runnable {
         System.setOut(out);
         System.setErr(err);
 
-        System.setSecurityManager(originalSecurityManager);
-
         if (exitVM) {
             System.exit(0);
         }
@@ -403,12 +400,6 @@ public class NGServer implements Runnable {
     public void run() {
         running = true;
         NGSession sessionOnDeck = null;
-
-        originalSecurityManager = System.getSecurityManager();
-        System.setSecurityManager(
-                new NGSecurityManager(
-                originalSecurityManager));
-
 
         synchronized (System.in) {
             if (!(System.in instanceof ThreadLocalInputStream)) {

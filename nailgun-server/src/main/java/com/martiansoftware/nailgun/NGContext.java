@@ -219,7 +219,7 @@ public class NGContext {
 	 * should exit
 	 */
 	public void exit(int exitCode) {
-		exitStream.println(exitCode);
+        	throw new NGExitException(exitCode);
 	}
 
 	/**
